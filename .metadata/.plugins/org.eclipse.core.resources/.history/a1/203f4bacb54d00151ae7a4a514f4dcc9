@@ -21,7 +21,7 @@ public class PCatVES {
 
    @GET
    @Path("/{Location}&{Package1}")
-   @Produces(MediaType.TEXT_PLAIN)
+   @Produces(MediaType.APPLICATION_JSON)
    public String getVESDetails(@PathParam("Location")String Location, @PathParam("Package1")String Package1) throws SQLException {
 		
 	   //System.out.println(Location + Package1);

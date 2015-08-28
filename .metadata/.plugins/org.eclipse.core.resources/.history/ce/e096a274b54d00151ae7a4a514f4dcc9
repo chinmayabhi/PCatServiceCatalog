@@ -21,7 +21,7 @@ public class PCatVES {
 
    @GET
    @Path("/{Location}&{Package1}")
-   @Produces(MediaType.TEXT_PLAIN)
+   @Produces(MediaType.APPLICATION_JSON)
    public String getVESDetails(@PathParam("Location")String Location, @PathParam("Package1")String Package1) throws SQLException {
 		
 	   //System.out.println(Location + Package1);
@@ -140,9 +140,8 @@ public class PCatVES {
 		   x1.add("Bundle_Desc", rs.getString(2));
 		   //x1.add("Bundle_Discount", rs.getString(3));
 		   x1.add("Bundle_Cost", rs.getString(4));
-		   list.add(x1);		
+		   bundleDetails.add("Bundle",x1);		
 	   }
-	   bundleDetails.add("Bundle_Details",list);
 	   con.close();
 	   
 	   return new GsonBuilder().setPrettyPrinting().create().toJson(bundleDetails.build());

@@ -62,9 +62,11 @@ public class PCatWireLine {
 	   Connection con=getConnection.getConnection();
 	   java.sql.Statement st1 = con.createStatement();
 	   java.sql.Statement st2 = con.createStatement();
-	   
 	   java.sql.Statement st4 = con.createStatement();
+	   
 	   JsonObjectBuilder bundleDetails=Json.createObjectBuilder();
+	   JsonArrayBuilder list = Json.createArrayBuilder();
+	   JsonObjectBuilder x1;
 	   
 	   ResultSet var1 = st1.executeQuery("select Package_Id from Package where Package_name= '" + Package1 + "'");
 	   ResultSet var2 = st2.executeQuery("select Package_Id from Package where Package_name='" + Package2 + "'");
@@ -82,13 +84,14 @@ public class PCatWireLine {
 	   ResultSet rs=st4.executeQuery("select * from temp");
 	   while(rs.next()) 
 	   {
-		   JsonObjectBuilder x1=Json.createObjectBuilder();
+		   x1=Json.createObjectBuilder();
 		   x1.add("Bundle_Id",rs.getString(1) );
 		   x1.add("Bundle_Desc", rs.getString(2));
 		   x1.add("Bundle_Discount", rs.getString(3));
 		   x1.add("Bundle_Cost", rs.getString(4));
-		   bundleDetails.add("Bundle",x1);		
+		   list.add(x1);		
 	   }
+	   bundleDetails.add("Bundle_Details",list);	
 	   con.close();
 	   
 	   return new GsonBuilder().setPrettyPrinting().create().toJson(bundleDetails.build());
@@ -105,9 +108,11 @@ public class PCatWireLine {
 	   java.sql.Statement st1 = con.createStatement();
 	   java.sql.Statement st2 = con.createStatement();
 	   java.sql.Statement st3 = con.createStatement();
-	   
 	   java.sql.Statement st4 = con.createStatement();
+	   
 	   JsonObjectBuilder bundleDetails=Json.createObjectBuilder();
+	   JsonArrayBuilder list = Json.createArrayBuilder();
+	   JsonObjectBuilder x1;
 	   
 	   ResultSet var1 = st1.executeQuery("select Package_Id from Package where Package_name= '" + Package1 + "'");
 	   ResultSet var2 = st2.executeQuery("select Package_Id from Package where Package_name='" + Package2 + "'");
@@ -130,13 +135,14 @@ public class PCatWireLine {
 	   ResultSet rs=st4.executeQuery("select * from temp");
 	   while(rs.next()) 
 	   {
-		   JsonObjectBuilder x1=Json.createObjectBuilder();
+		   x1=Json.createObjectBuilder();
 		   x1.add("Bundle_Id",rs.getString(1) );
 		   x1.add("Bundle_Desc", rs.getString(2));
 		   x1.add("Bundle_Discount", rs.getString(3));
 		   x1.add("Bundle_Cost", rs.getString(4));
-		   bundleDetails.add("Bundle",x1);		
+		   list.add(x1);		
 	   }
+	   bundleDetails.add("Bundle_Details",list);
 	   con.close();
 	   
 	   return new GsonBuilder().setPrettyPrinting().create().toJson(bundleDetails.build());
